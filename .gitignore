@@ -1,12 +1,10 @@
 # See https://git-scm.com/docs/gitignore
-
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-
 ## Ignore markdown previews
 .html
-
 ## Ignore data files
 **/Data/
+.httr-oauth
