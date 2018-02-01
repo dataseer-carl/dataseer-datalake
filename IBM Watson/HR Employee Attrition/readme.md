@@ -1,6 +1,4 @@
-# IBM Watson HR Employee Attrition
-
-[**Source**](https://www.ibm.com/communities/analytics/watson-analytics-blog/guide-to-sample-datasets/) | [**Download**](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-HR-Employee-Attrition.csv)
+# [IBM Watson HR Employee Attrition](https://www.ibm.com/communities/analytics/watson-analytics-blog/guide-to-sample-datasets/)
 
 > Find out the leading drivers of Employee Attrition. Track and analyze employee satisfaction and retain valuable employees.
 
@@ -8,9 +6,9 @@
 
 ### [Raw data files](https://drive.google.com/open?id=1Aezowz0EZbknJAJqykC4PG6VIj11KodG)
 
-| Filename | Description | Documentation | Columns | Rows | Size |
-|:---------|:------------|:--------------|--------:|-----:|-----:|
-| `WA_Fn-UseC_-HR-Employee-Attrition.csv` | Collated employee records and survey results | [Kaggle](https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset) | 35 columns | 1,470 rows | 227,977 bytes |
+| Filename | Description | Source | Documentation | Columns | Rows | Size |
+|:---------|:------------|:-------|:--------------|--------:|-----:|-----:|
+| `WA_Fn-UseC_-HR-Employee-Attrition.csv` | Collated employee records and survey results | [Watson Analytics](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-HR-Employee-Attrition.csv) | [Kaggle](https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset) | 35 columns | 1,470 rows | 227,977 bytes |
 
 ### [Parsed data files](https://drive.google.com/open?id=1DH7K1KfKAMBOkpaGd5pEn8wtcQ5ZDfqu)
 
