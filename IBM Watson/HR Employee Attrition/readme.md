@@ -2,6 +2,14 @@
 
 > Find out the leading drivers of Employee Attrition. Track and analyze employee satisfaction and retain valuable employees.
 
+## Scenario matrix
+
+|  | DS1 | AVDD | EAN | R | AABD | AI |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|
+| Employee Satisfaction and Performance |  | x |  | x |  |  |
+| Employee Retention |  | x |  |  | x | x |
+| Salary Benchmarking |  |  |  |  |  | x |
+
 ## Data Files
 
 ### [Raw data files](https://drive.google.com/open?id=1Aezowz0EZbknJAJqykC4PG6VIj11KodG)
@@ -17,7 +25,9 @@
 | `data00_raw ingest.rds` | Loaded raw data | `WA_Fn-UseC_-HR-Employee-Attrition.csv` | `script00_raw ingest.R` |
 | `data01_parsed ingest.rds` | Cleaned raw data | `data00_raw ingest.rds` | `script01_inspect and parse.ipynb` |
 
-### WA_Fn-UseC_-HR-Employee-Attrition.csv
+## Datasets
+
+### `WA_Fn-UseC_-HR-Employee-Attrition.csv`
 
 #### Schema
 

@@ -8,8 +8,8 @@ case.dir <- "Employee Satisfaction and Performance"
 
 paths.ls <- file.path(".", data.source, data.set, "Scripts", "paths.rds") %>% readRDS()
 
-## Initialise case.path for use case
-case.path <- file.path(paths.ls$local, "Use Cases", case.dir)
+## Initialise case.path for scenario
+case.path <- file.path(paths.ls$local, "Scenarios", case.dir)
 
 # Parsed Raw ####
 
