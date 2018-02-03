@@ -119,188 +119,54 @@ $(document).ready(function () {
 </div>
 
 
-<div id="employee-satisfaction-and-performance" class="section level1">
-<h1>Employee Satisfaction and Performance</h1>
-<div id="scenario" class="section level2">
-<h2>Scenario</h2>
-<p>Every quarter, Pharma Drug Inc. conducts two employee surveys: an <em>employee satisfaction survey</em> and a <em>performance rating survey</em>.</p>
-<p>Using the results from these two surveys <em>and</em> data from Pharma Drug’s employee records, fashion a report on the results of the survey. Use the ff questions as guiding principles:</p>
-<ul>
-<li><em>How happy are the employees with the company?</em></li>
-<li><em>Who is unhappy</em></li>
-<li><em>Why are they unhappy?</em></li>
-<li><em>How happy is the company with its employees?</em></li>
-<li><em>Who is not performing</em></li>
-<li><em>Why are they not performing?</em></li>
-</ul>
-</div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datalake" class="section level1">
+<h1>DataLake</h1>
 <blockquote>
-<p><strong>Note</strong>: the path <code>../../Data/*</code> pertains to a processed data file by jobs under the scenario’s <code>data-source</code>.</p>
-<p>The path <code>../scenario-name/*</code> pertains to a processed data files under a different <code>scenario-name</code> from the same <code>data-source</code>.</p>
+<p>Curated datasets for content development</p>
 </blockquote>
-<table style="width:50%;">
-<colgroup>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Dataset</th>
-<th align="left">Description</th>
-<th align="right">Columns</th>
-<th align="right">Rows</th>
-<th align="center">Input Data</th>
-<th align="center">Data Processing Scripts</th>
-<th align="left">csv Data File</th>
-<th align="left">xlsx Data File</th>
-<th align="left">R Data File</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Employee records</td>
-<td align="left">Employee database maintained by HR; collated from employee profile sheets and employee records database</td>
-<td align="right">18 columns</td>
-<td align="right">1,470 rows</td>
-<td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
-<td align="center"><code>prep00_from parsed ingest.R</code></td>
-<td align="left"><a href="https://drive.google.com/open?id=18ad9cDTke0K17g5haW9vr8l7X9HIsV6M"><code>Employee records.csv</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
-</tr>
-<tr class="even">
-<td align="left">Performance rating survey</td>
-<td align="left">Results of performance rating survey accomplished by managers</td>
-<td align="right">6 columns</td>
-<td align="right">1,470 rows</td>
-<td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
-<td align="center"><code>prep00_from parsed ingest.R</code></td>
-<td align="left"><a href="https://drive.google.com/open?id=1UJSni8l-1TKbv0LeegE8p80aQ8s9VBW6"><code>Performance rating survey.csv</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
-</tr>
-<tr class="odd">
-<td align="left">Satisfaction survey</td>
-<td align="left">Results of satisfaction survey accomplished by all staff</td>
-<td align="right">6 columns</td>
-<td align="right">1,470 rows</td>
-<td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
-<td align="center"><code>prep00_from parsed ingest.R</code></td>
-<td align="left"><a href="https://drive.google.com/open?id=1XbTDzUDbKPyz8ZTFIHRYa0u5FRxIceNl"><code>Satisfaction survey.csv</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
-</tr>
-</tbody>
-</table>
-<div id="employee-records" class="section level3">
-<h3>Employee records</h3>
-<ul>
-<li><strong>EmployeeNumber</strong>: Employee ID</li>
-<li><strong>Sex</strong>: <em>Male</em> or <em>Female</em></li>
-<li><strong>Age</strong>: Employee age</li>
-<li><strong>MaritalStatus</strong>: <em>Single</em>, <em>Married</em>, <em>Divorced</em></li>
-<li><strong>DistanceFromHome</strong>: Distance of work from home (in km?). Ranges from 1–29. 29km ~ Makati to San Pedro, Laguna</li>
-<li><strong>Education</strong><br />
-<ul>
-<li><em>1</em> ‘Below College’</li>
-<li><em>2</em> ‘College’</li>
-<li><em>3</em> ‘Bachelor’</li>
-<li><em>4</em> ‘Master’</li>
-<li><em>5</em> ‘Doctor’</li>
-</ul></li>
-<li><strong>EducationField</strong><br />
-<ul>
-<li><em>Human Resources</em></li>
-<li><em>Life Sciences</em></li>
-<li><em>Marketing</em></li>
-<li><em>Medical</em></li>
-<li><em>Technical degree</em></li>
-<li><em>Other</em></li>
-</ul></li>
-<li><strong>NumCompaniesWorked</strong>: Number of companies worked with prior</li>
-<li><strong>TotalWorkingYears</strong>: Total number of years working</li>
-<li><strong>Department</strong><br />
-<ul>
-<li><em>Sales</em></li>
-<li><em>Research &amp; Development</em></li>
-<li><em>Human Resources</em></li>
-</ul></li>
-<li><strong>JobLevel</strong>: Ranges from 1–5</li>
-<li><strong>JobRole</strong>: Job title</li>
-<li><strong>YearsAtCompany</strong>: Tenure</li>
-<li><strong>YearsInCurrentRole</strong>: Years in current role</li>
-<li><strong>YearsSinceLastPromotion</strong>: Years since last promotion</li>
-<li><strong>MonthlyIncome</strong>: Current salary</li>
-<li><strong>StockOptionLevel</strong>: Ranges 0–3</li>
-<li><strong>SalaryHike</strong>: Increase in salary (in percent) from base(?)</li>
-</ul>
+<p>Poject desription and objectives.</p>
+<div id="current-data-sources" class="section level3">
+<h3>Current Data Sources</h3>
+<p>Under contruction.</p>
 </div>
-<div id="performance-rating-survey" class="section level3">
-<h3>Performance rating survey</h3>
-<ul>
-<li><strong>EmployeeNumber</strong>: Employee ID</li>
-<li><strong>PerformanceRating</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Good’</li>
-<li><em>3</em> ‘Excellent’</li>
-<li><em>4</em> ‘Outstanding’</li>
-</ul></li>
-<li><strong>YearsWithCurrManager</strong>: Years with current manager</li>
-<li><strong>OverTime</strong>: <em>TRUE</em>, <em>FALSE</em></li>
-<li><strong>TrainingTimesLastYear</strong>: Number of trainings attended last year</li>
-</ul>
+<div id="usage" class="section level3">
+<h3>Usage</h3>
+<div id="ingestion" class="section level4">
+<h4>Ingestion</h4>
+<p>Workflow: GDrive and GitHub → Clone repo to desktop → stage in GDrive, push and merge in GitHub</p>
+<p>See <a href="https://trello.com/c/gRCvHb0Z">Trello</a>.</p>
 </div>
-<div id="satisfaction-survey" class="section level3">
-<h3>Satisfaction survey</h3>
-<ul>
-<li><strong>EmployeeNumber</strong>: Employee ID</li>
-<li><strong>EnvironmentSatisfaction</strong>: <em>How satisfied are you with your working environment?</em>
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>RelationshipSatisfaction</strong>: <em>How satisfied are you with the relationship with your co-workers?</em>
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>JobSatisfaction</strong>: <em>How satsified are you with your job?</em>
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>JobInvolvement</strong>: <em>How engaged are you at work?</em>
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>WorkLifeBalance</strong>: <em>How much work-life balance do you feel you have?</em>
-<ul>
-<li><em>1</em> ‘Bad’</li>
-<li><em>2</em> ‘Good’</li>
-<li><em>3</em> ‘Better’</li>
-<li><em>4</em> ‘Best’</li>
-</ul></li>
-</ul>
+<div id="scenario-prep" class="section level4">
+<h4>Scenario prep</h4>
+<p>Under construction.</p>
 </div>
+</div>
+<div id="stages" class="section level3">
+<h3>Stages</h3>
+<div id="data-stage" class="section level4">
+<h4>Data Stage</h4>
+<p>Data file hosting.</p>
+<p><code>dump://</code> is located in <code>~/Data/DataLake</code> in <a href="(https://drive.google.com/drive/folders/1IQXPXMZSEK4QK_gKK2ERp9pOs4wJ_dog?usp=sharing)">GDrive</a>.</p>
+<p>Currently hosted in Carl Calub’s GDrive.</p>
+</div>
+<div id="repo" class="section level4">
+<h4>Repo</h4>
+<p>Scripts and documentation of jobs.</p>
+<p><code>repo://</code> refers to the <a href="https://github.com/dataseer-carl/dataseer-datalake">GitHub repository</a></p>
+</div>
+<div id="wiki" class="section level4">
+<h4>Wiki</h4>
+<p>Portal for scenarios.</p>
+</div>
+</div>
+<div id="definitions" class="section level3">
+<h3>Definitions</h3>
+<ul>
+<li><strong>Data source</strong> is a dataset or a collection thereof that capture one specific scenario</li>
+<li><strong>Author</strong> is the publisher of the data source</li>
+<li><strong>Data files</strong> are the files in the data source that contain the dataset(s). Unaltered data files are called <em>raw data</em>; while raw data files that have been loaded and cleaned are called <em>parsed data</em></li>
+<li><strong>Datasets</strong> are the tables represented by the data files. When a raw data file is loaded, a new data file is created but said artifact should contain the same dataset.</li>
+</ul>
 </div>
 </div>
 

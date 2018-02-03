@@ -119,26 +119,33 @@ $(document).ready(function () {
 </div>
 
 
-<div id="employee-satisfaction-and-performance" class="section level1">
-<h1>Employee Satisfaction and Performance</h1>
+<div id="employee-retention" class="section level1">
+<h1>Employee Retention</h1>
 <div id="scenario" class="section level2">
 <h2>Scenario</h2>
-<p>Every quarter, Pharma Drug Inc. conducts two employee surveys: an <em>employee satisfaction survey</em> and a <em>performance rating survey</em>.</p>
-<p>Using the results from these two surveys <em>and</em> data from Pharma Drug’s employee records, fashion a report on the results of the survey. Use the ff questions as guiding principles:</p>
+<p>The first year of operations of Pharma Drug Inc. has just ended, and some of its employees have decided to leave the company.</p>
+<p>As a company that just started, the HR Director of the company wants to proactively engage their employees. The director wants to know:</p>
 <ul>
-<li><em>How happy are the employees with the company?</em></li>
-<li><em>Who is unhappy</em></li>
-<li><em>Why are they unhappy?</em></li>
-<li><em>How happy is the company with its employees?</em></li>
-<li><em>Who is not performing</em></li>
-<li><em>Why are they not performing?</em></li>
+<li>Who among the current employees are most prone to leaving the company; and</li>
+<li>Why did the resignees leave the company?</li>
 </ul>
+<div id="employee-retention-model" class="section level3">
+<h3>Employee retention model</h3>
+<p>Using the <em>historical employees</em> data, a predictive model for employee separation can be constructed. This model can then be applied on <em>active employees</em> data to predict who among them are most at risk of separation.</p>
+<p>Note that because of the lack of temporal depth in the data, a proper predictive exercise that demonstrates all the facets of predictive analytics cannot be devised.</p>
+</div>
+<div id="employee-program-design" class="section level3">
+<h3>Employee program design</h3>
+<p>The responses of the resigness in the recently conducted <em>Employee Satisfaction Survey</em> can be used to understand the different dissatisfaction profiles. The segments of dissatisfied employees can provide invaluable inputs to designing employee engagement programs.</p>
+<p>When a predictive model for what “dissatisfaction segments” active employees would belong in is constructed, it could be used in conjunction with the <em>predictive employee retention model</em> to come up with targeted programs.</p>
+</div>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <blockquote>
 <p><strong>Note</strong>: the path <code>../../Data/*</code> pertains to a processed data file by jobs under the scenario’s <code>data-source</code>.</p>
 <p>The path <code>../scenario-name/*</code> pertains to a processed data files under a different <code>scenario-name</code> from the same <code>data-source</code>.</p>
+<p>A name without a path pertains to a data file in the same <code>scenario-name</code>.</p>
 </blockquote>
 <table style="width:50%;">
 <colgroup>
@@ -167,26 +174,26 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Employee records</td>
-<td align="left">Employee database maintained by HR; collated from employee profile sheets and employee records database</td>
-<td align="right">18 columns</td>
+<td align="left">Historical employees</td>
+<td align="left">List of all current and past employees</td>
+<td align="right">16 columns</td>
 <td align="right">1,470 rows</td>
 <td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
 <td align="center"><code>prep00_from parsed ingest.R</code></td>
-<td align="left"><a href="https://drive.google.com/open?id=18ad9cDTke0K17g5haW9vr8l7X9HIsV6M"><code>Employee records.csv</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=12Mwh0ljlAi1omGnGe7PbP7PztgiXje-n"><code>active employees.csv</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=1CxkT11f8GHs37j3t2t0GW4auwqjLzKDO"><code>case_Employee Retention.xlsx</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=1lAExdSn6t5_tQgZ8eSf-zlWjsOS7v5OP"><code>case_Employee Retention.RData</code></a></td>
 </tr>
 <tr class="even">
-<td align="left">Performance rating survey</td>
-<td align="left">Results of performance rating survey accomplished by managers</td>
-<td align="right">6 columns</td>
-<td align="right">1,470 rows</td>
-<td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
+<td align="left">Active employees</td>
+<td align="left">List of all current employees</td>
+<td align="right">19 columns</td>
+<td align="right">1,233 rows</td>
+<td align="center">Historical employees<br /><code>../../Data/sdata01_parsed ingest.rds</code></td>
 <td align="center"><code>prep00_from parsed ingest.R</code></td>
-<td align="left"><a href="https://drive.google.com/open?id=1UJSni8l-1TKbv0LeegE8p80aQ8s9VBW6"><code>Performance rating survey.csv</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
-<td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=1HqFqrH4miMX0cHcVmlElspTkdnfKUTMl"><code>all employees.csv</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=1CxkT11f8GHs37j3t2t0GW4auwqjLzKDO"><code>case_Employee Retention.xlsx</code></a></td>
+<td align="left"><a href="https://drive.google.com/open?id=1lAExdSn6t5_tQgZ8eSf-zlWjsOS7v5OP"><code>case_Employee Retention.RData</code></a></td>
 </tr>
 <tr class="odd">
 <td align="left">Satisfaction survey</td>
@@ -194,19 +201,19 @@ $(document).ready(function () {
 <td align="right">6 columns</td>
 <td align="right">1,470 rows</td>
 <td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
-<td align="center"><code>prep00_from parsed ingest.R</code></td>
+<td align="center"><code>../Employee Satsifaction and Performance/prep00_from parsed ingest.R</code></td>
 <td align="left"><a href="https://drive.google.com/open?id=1XbTDzUDbKPyz8ZTFIHRYa0u5FRxIceNl"><code>Satisfaction survey.csv</code></a></td>
 <td align="left"><a href="https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg"><code>case_Employee Satisfaction and Performance.xlsx</code></a></td>
 <td align="left"><a href="https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk"><code>case_Employee Satisfaction and Performance.RData</code></a></td>
 </tr>
 </tbody>
 </table>
-<div id="employee-records" class="section level3">
-<h3>Employee records</h3>
+<div id="all-employees" class="section level3">
+<h3>All employees</h3>
 <ul>
 <li><strong>EmployeeNumber</strong>: Employee ID</li>
 <li><strong>Sex</strong>: <em>Male</em> or <em>Female</em></li>
-<li><strong>Age</strong>: Employee age</li>
+<li><strong>Age</strong>: Current age of employee</li>
 <li><strong>MaritalStatus</strong>: <em>Single</em>, <em>Married</em>, <em>Divorced</em></li>
 <li><strong>DistanceFromHome</strong>: Distance of work from home (in km?). Ranges from 1–29. 29km ~ Makati to San Pedro, Laguna</li>
 <li><strong>Education</strong><br />
@@ -226,38 +233,65 @@ $(document).ready(function () {
 <li><em>Technical degree</em></li>
 <li><em>Other</em></li>
 </ul></li>
-<li><strong>NumCompaniesWorked</strong>: Number of companies worked with prior</li>
-<li><strong>TotalWorkingYears</strong>: Total number of years working</li>
-<li><strong>Department</strong><br />
+<li><strong>priorNumCompaniesWorked</strong>: Number of companies worked with prior to the company.</li>
+<li><strong>priorYearsOfWork</strong>: Total number of years of working experience prior to the company.</li>
+<li><strong>Tenure</strong>: Total number of years working in the company.</li>
+<li><strong>lastDepartment</strong>: Current department if active; last department if inactive
 <ul>
 <li><em>Sales</em></li>
 <li><em>Research &amp; Development</em></li>
 <li><em>Human Resources</em></li>
 </ul></li>
-<li><strong>JobLevel</strong>: Ranges from 1–5</li>
-<li><strong>JobRole</strong>: Job title</li>
-<li><strong>YearsAtCompany</strong>: Tenure</li>
-<li><strong>YearsInCurrentRole</strong>: Years in current role</li>
-<li><strong>YearsSinceLastPromotion</strong>: Years since last promotion</li>
-<li><strong>MonthlyIncome</strong>: Current salary</li>
-<li><strong>StockOptionLevel</strong>: Ranges 0–3</li>
-<li><strong>SalaryHike</strong>: Increase in salary (in percent) from base(?)</li>
+<li><strong>lastJobLevel</strong>: Current job level if active; last job level if inactive. Ranges from 1–5</li>
+<li><strong>lastJobRole</strong>: Current job title if active; last job title if inactive.</li>
+<li><strong>lastMonthlyIncome</strong>: Current salary if active; last salary if inactive.</li>
+<li><strong>lastStockOptionLevel</strong>: Current stock option level if active; last if inactive. Ranges 0–3</li>
+<li><strong>OverTime</strong>: Whether employee has worked over time or not</li>
+<li><strong>Status</strong>: <code>Active</code> if current employee; <code>Inactive</code> if separated from company.</li>
 </ul>
 </div>
-<div id="performance-rating-survey" class="section level3">
-<h3>Performance rating survey</h3>
+<div id="active-employees" class="section level3">
+<h3>Active employees</h3>
 <ul>
 <li><strong>EmployeeNumber</strong>: Employee ID</li>
-<li><strong>PerformanceRating</strong><br />
+<li><strong>Sex</strong>: <em>Male</em> or <em>Female</em></li>
+<li><strong>Age</strong>: Current age of employee</li>
+<li><strong>MaritalStatus</strong>: <em>Single</em>, <em>Married</em>, <em>Divorced</em></li>
+<li><strong>DistanceFromHome</strong>: Distance of work from home (in km?). Ranges from 1–29. 29km ~ Makati to San Pedro, Laguna</li>
+<li><strong>Education</strong><br />
 <ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Good’</li>
-<li><em>3</em> ‘Excellent’</li>
-<li><em>4</em> ‘Outstanding’</li>
+<li><em>1</em> ‘Below College’</li>
+<li><em>2</em> ‘College’</li>
+<li><em>3</em> ‘Bachelor’</li>
+<li><em>4</em> ‘Master’</li>
+<li><em>5</em> ‘Doctor’</li>
 </ul></li>
-<li><strong>YearsWithCurrManager</strong>: Years with current manager</li>
-<li><strong>OverTime</strong>: <em>TRUE</em>, <em>FALSE</em></li>
-<li><strong>TrainingTimesLastYear</strong>: Number of trainings attended last year</li>
+<li><strong>EducationField</strong><br />
+<ul>
+<li><em>Human Resources</em></li>
+<li><em>Life Sciences</em></li>
+<li><em>Marketing</em></li>
+<li><em>Medical</em></li>
+<li><em>Technical degree</em></li>
+<li><em>Other</em></li>
+</ul></li>
+<li><strong>priorNumCompaniesWorked</strong>: Number of companies worked with prior to the company.</li>
+<li><strong>priorYearsOfWork</strong>: Total number of years of working experience prior to the company.</li>
+<li><strong>Tenure</strong>: Total number of years working in the company.</li>
+<li><strong>Department</strong>: Current department of employee.
+<ul>
+<li><em>Sales</em></li>
+<li><em>Research &amp; Development</em></li>
+<li><em>Human Resources</em></li>
+</ul></li>
+<li><strong>JobLevel</strong>: Current job level of employee. Ranges from 1–5.</li>
+<li><strong>JobRole</strong>: Current job title of employee.</li>
+<li><strong>MonthlyIncome</strong>: Current monthly salary.</li>
+<li><strong>StockOptionLevel</strong>: Current stock option level. Ranges 0–3.</li>
+<li><strong>YearsInCurrentRole</strong>: Years in current role.</li>
+<li><strong>YearsSinceLastPromotion</strong>: Number of years since last promotion</li>
+<li><strong>SalaryHike</strong>: Increase in salary by last promotion</li>
+<li><strong>OverTime</strong>: Whether employee has worked over time or not</li>
 </ul>
 </div>
 <div id="satisfaction-survey" class="section level3">

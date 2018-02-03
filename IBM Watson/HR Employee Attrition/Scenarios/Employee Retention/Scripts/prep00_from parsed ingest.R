@@ -4,75 +4,77 @@ library(magrittr)
 
 data.source <- "IBM Watson"
 data.set <- "HR Employee Attrition"
-case.dir <- "Employee Satisfaction and Performance"
+case.dir <- "Employee Retention"
 
 paths.ls <- file.path(".", data.source, data.set, "Scripts", "paths.rds") %>% readRDS()
 
 ## Initialise case.path for scenario
 case.path <- file.path(paths.ls$local, "Scenarios", case.dir)
 
-# Parsed Raw ####
+# Get inputs ####
 
-## Get parsed ingest
-data01.file <- "data01_parsed ingest.rds"
-data01.path <- file.path(paths.ls$datastage.local, data01.file)
+library(googledrive)
 
-raw.df <- readRDS(data01.path)
+### List extant data files
+(dataset.files <- file.path(paths.ls$prod, "data") %>% drive_ls())
+
+#### parsed ingest
+
+input.file <- "data01_parsed ingest.rds"
+
+##### download
+dataset.file <- file.path(paths.ls$prod, "data") %>% 
+	file.path(input.file) %>% 
+	drive_get()
+dataset.id <- as_id(dataset.file) ## Get ID for download
+raw.path <- file.path(case.path, "Data", dataset.file$name) ## Set destination path for download
+drive_download(dataset.id, path = raw.path, overwrite = TRUE) ## Download raw data file
+
+##### load
+raw.df <- file.path(raw.path) %>% readRDS()
 
 # Fabricate ####
 
 library(dplyr)
-library(stringr)
 
-## Isolate satisfaction survey columns ####
-satisfaction.df <- raw.df %>% 
-	select(
-		EmployeeNumber,
-		EnvironmentSatisfaction, RelationshipSatisfaction, JobSatisfaction,
-		JobInvolvement, WorkLifeBalance
-	)
+## Historical employees ####
 
-## Remove variables already in satisfaction survey
-rmSatis.df <- raw.df %>% 
-	select(
-		-one_of(
-			names(satisfaction.df) %>% str_subset("[^(EmployeeNumber)]")
-		)
-	)
-
-## Isolate employee record ####
-employee.df <- rmSatis.df %>% 
+all.df <- raw.df %>% 
+	mutate(
+		Status = as.factor(c("Active", "Inactive")[Separated + 1]),
+		priorYearsOfWork = TotalWorkingYears - YearsAtCompany
+	) %>% 
 	select(
 		EmployeeNumber,
 		# Bio
 		Sex, Age, MaritalStatus, DistanceFromHome,
 		Education, EducationField, 
-		NumCompaniesWorked, TotalWorkingYears,
-		# Record
-		Department, JobLevel, JobRole,
-		YearsAtCompany, YearsInCurrentRole, YearsSinceLastPromotion,
-		MonthlyIncome, StockOptionLevel, SalaryHike,
-		Separated
+		priorNumCompaniesWorked = NumCompaniesWorked, priorYearsOfWork,
+		# Latest record
+		Tenure = YearsAtCompany,
+		lastDepartment = Department, lastJobLevel = JobLevel, lastJobRole = JobRole,
+		lastMonthlyIncome = MonthlyIncome, lastStockOptionLevel = StockOptionLevel,
+		OverTime,
+		# Status
+		Status
 	)
 
-rm.df <- rmSatis.df %>% 
-	select(
-		-one_of(
-			c(names(employee.df)) %>% str_subset("[^(EmployeeNumber)]")
-		)
-	)
+## Active employees ####
 
-## Isolate performance survey columns ####
-
-performance.df <- rm.df %>% 
-	select(
-		EmployeeNumber, PerformanceRating,
-		YearsWithCurrManager, OverTime, TrainingTimesLastYear
-	)
+active.df <- all.df %>% 
+	filter(Status == "Active") %>% 
+	rename(
+		Department = lastDepartment, JobLevel = lastJobLevel, JobRole = lastJobRole,
+		MonthlyIncome = lastMonthlyIncome, StockOptionLevel = lastStockOptionLevel
+	) %>% 
+	left_join(
+		raw.df %>% select(EmployeeNumber, YearsInCurrentRole, YearsSinceLastPromotion, SalaryHike)
+	) %>% 
+	select(-Status)
 
 # Store devised raw data ####
 
-library(googledrive)
+# library(googledrive)
 
 ## RData ####
 
@@ -80,7 +82,7 @@ library(googledrive)
 case.file <- paste0("case_", case.dir)
 cache.file <- paste0(case.file, ".RData")
 cache.path <- file.path(case.path, "Data", cache.file)
-save(satisfaction.df, employee.df, performance.df, file = cache.path)
+save(all.df, active.df, file = cache.path)
 
 ### Upload to dump
 dump.path <- file.path(paths.ls$datastage.prod, cache.file)
@@ -93,15 +95,15 @@ stage.path <- file.path(paths.ls$datastage.prod, case.file)
 drive_mkdir(stage.path)
 
 staged.ls <- list(
-	"Satisfaction survey" = satisfaction.df,
-	"Employee records" = employee.df,
-	"Performance rating survey" = performance.df
+	"active employees" = active.df,
+	"all employees" = all.df
 )
 
 #### Upload each
 lapply(
 	as.list(names(staged.ls)),
 	function(temp.name){
+		# temp.name = "active employees"
 		temp.df <- staged.ls[[temp.name]]
 		file.name <- paste0(temp.name, ".csv")
 		out.path <- file.path(case.path, "Data", file.name)

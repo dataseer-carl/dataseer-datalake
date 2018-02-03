@@ -1,25 +1,29 @@
 # Employee Satisfaction and Performance
 
-**Industry**: HR
-
-**Source**: Artificial
-
 ## Scenario
 
 Every quarter, Pharma Drug Inc. conducts two employee surveys: an *employee satisfaction survey* and a *performance rating survey*.
 
-Using the results from these two surveys *and* data from Pharma Drug's employee records, draft a report that answers the ff questions:
+Using the results from these two surveys *and* data from Pharma Drug's employee records, fashion a report on the results of the survey.  Use the ff questions as guiding principles:
 
 * *How happy are the employees with the company?*
+   - *Who is unhappy*
+   - *Why are they unhappy?*
 * *How happy is the company with its employees?*
+   - *Who is not performing*
+   - *Why are they not performing?*
 
 ## Datasets
 
-| Dataset | Description | Input Data | Data Processing Scripts | csv Data File | xlsx Data File | R Data File |
-|:--|:--|:-:|:-:|:--|:--|:--|
-| Employee records | Employee database maintained by HR; collated from employee profile sheets and employee records database | `../data01_parsed ingest.rds` | `prep00_create raw data.R` | [`Employee records.csv`](https://drive.google.com/open?id=1rKSduE2E2ZX5lk1a4PmLd6oSstd9WAW2) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1sPGGAEs5uOvlUcok0bJiVMv5RKqe05MJ) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1Ho1NEvBNqGhxKVurONaL1xe9tEdHkVW4) |
-| Performance rating survey | Results of performance rating survey accomplished by managers  | `data01_parsed ingest.rds` | `prep00_create raw data.R` | [`Performance rating survey.csv`](https://drive.google.com/open?id=1TNp9wS8oozEeLQmenWVbxhGnkiraZu2T) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1sPGGAEs5uOvlUcok0bJiVMv5RKqe05MJ) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1Ho1NEvBNqGhxKVurONaL1xe9tEdHkVW4) |
-| Satisfaction survey | Results of satisfaction survey accomplished by all staff | `data01_parsed ingest.rds` | `prep00_create raw data.R` | [`Satisfaction survey.csv`](https://drive.google.com/open?id=1rtWqWPZz58E4YvxMA-ygM-tRPmWNyNB5) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1sPGGAEs5uOvlUcok0bJiVMv5RKqe05MJ) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1Ho1NEvBNqGhxKVurONaL1xe9tEdHkVW4) |
+> **Note**: the path `../../Data/*` pertains to a processed data file by jobs under the scenario's `data-source`.
+>
+> The path `../scenario-name/*` pertains to a processed data files under a different `scenario-name` from the same `data-source`.
+
+| Dataset | Description | Columns | Rows | Input Data | Data Processing Scripts | csv Data File | xlsx Data File | R Data File |
+|:--|:--|--:|--:|:-:|:-:|:--|:--|:--|
+| Employee records | Employee database maintained by HR; collated from employee profile sheets and employee records database | 18 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Employee records.csv`](https://drive.google.com/open?id=18ad9cDTke0K17g5haW9vr8l7X9HIsV6M) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
+| Performance rating survey | Results of performance rating survey accomplished by managers | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Performance rating survey.csv`](https://drive.google.com/open?id=1UJSni8l-1TKbv0LeegE8p80aQ8s9VBW6) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
+| Satisfaction survey | Results of satisfaction survey accomplished by all staff | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Satisfaction survey.csv`](https://drive.google.com/open?id=1XbTDzUDbKPyz8ZTFIHRYa0u5FRxIceNl) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
 
 ### Employee records
 
@@ -42,7 +46,7 @@ Using the results from these two surveys *and* data from Pharma Drug's employee 
 	- *Technical degree*
 	- *Other*
 * __NumCompaniesWorked__: Number of companies worked with prior
-* __TotalWorkingYears__: Total number of years working
+* __TotalWorkingYears__: Total number of years working up to present
 * __Department__<br/>
 	- *Sales*
 	- *Research & Development*
@@ -52,10 +56,9 @@ Using the results from these two surveys *and* data from Pharma Drug's employee 
 * __YearsAtCompany__: Tenure
 * __YearsInCurrentRole__: Years in current role
 * __YearsSinceLastPromotion__: Years since last promotion
-* __MonthlyIncome__: Current salary
+* __MonthlyIncome__: Current monthly salary
 * __StockOptionLevel__: Ranges 0--3
-* __SalaryHike__: Increase in salary (in percent) from base?)
-* __Separated__: Has employee left the company: *TRUE*, *FALSE*
+* __SalaryHike__: Increase in salary by last promotion
 
 ### Performance rating survey
 
@@ -87,7 +90,7 @@ Using the results from these two surveys *and* data from Pharma Drug's employee 
 	- *2* 'Medium'
 	- *3* 'High'
 	- *4* 'Very high'
-* __JobInvolvement__: *How much involved do you feel at work?* (Employee engagement)
+* __JobInvolvement__: *How engaged are you at work?*
 	- *1* 'Low'
 	- *2* 'Medium'
 	- *3* 'High'

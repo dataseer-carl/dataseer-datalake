@@ -124,6 +124,51 @@ $(document).ready(function () {
 <blockquote>
 <p>Find out the leading drivers of Employee Attrition. Track and analyze employee satisfaction and retain valuable employees.</p>
 </blockquote>
+<div id="scenario-matrix" class="section level2">
+<h2>Scenario matrix</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">DS1</th>
+<th align="center">AVDD</th>
+<th align="center">EAN</th>
+<th align="center">R</th>
+<th align="center">AABD</th>
+<th align="center">AI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Employee Satisfaction and Performance</td>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Employee Retention</td>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center">x</td>
+</tr>
+<tr class="odd">
+<td align="left">Salary Benchmarking</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">x</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="data-files" class="section level2">
 <h2>Data Files</h2>
 <div id="raw-data-files" class="section level3">
@@ -164,8 +209,10 @@ $(document).ready(function () {
 </div>
 <div id="parsed-data-files" class="section level3">
 <h3><a href="https://drive.google.com/open?id=1DH7K1KfKAMBOkpaGd5pEn8wtcQ5ZDfqu">Parsed data files</a></h3>
-<table style="width:22%;">
+<table style="width:33%;">
 <colgroup>
+<col width="5%"></col>
+<col width="5%"></col>
 <col width="5%"></col>
 <col width="5%"></col>
 <col width="5%"></col>
@@ -175,6 +222,8 @@ $(document).ready(function () {
 <tr class="header">
 <th align="left">Data file</th>
 <th align="left">Description</th>
+<th align="right">Columns</th>
+<th align="right">Rows</th>
 <th align="left">Input data</th>
 <th align="left">Processing script</th>
 </tr>
@@ -183,20 +232,27 @@ $(document).ready(function () {
 <tr class="odd">
 <td align="left"><code>data00_raw ingest.rds</code></td>
 <td align="left">Loaded raw data</td>
+<td align="right">35 columns</td>
+<td align="right">1,470 rows</td>
 <td align="left"><code>WA_Fn-UseC_-HR-Employee-Attrition.csv</code></td>
 <td align="left"><code>script00_raw ingest.R</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>data01_parsed ingest.rds</code></td>
 <td align="left">Cleaned raw data</td>
+<td align="right">29 columns</td>
+<td align="right">1,470 rows</td>
 <td align="left"><code>data00_raw ingest.rds</code></td>
 <td align="left"><code>script01_inspect and parse.ipynb</code></td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
 <div id="wa_fn-usec_-hr-employee-attrition.csv" class="section level3">
-<h3>WA_Fn-UseC_-HR-Employee-Attrition.csv</h3>
+<h3><code>WA_Fn-UseC_-HR-Employee-Attrition.csv</code></h3>
 <div id="schema" class="section level4">
 <h4>Schema</h4>
 <ul>
