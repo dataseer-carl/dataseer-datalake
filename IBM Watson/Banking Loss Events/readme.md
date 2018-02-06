@@ -19,7 +19,7 @@
 
 #### Unresolved issues
 
-- [ ] Duplicate rows because of multiple *Recovery Amounts (percent)*.  As some entries in the loss data template are updated, duplicate rows are created.  Would result in double-counting if not resolved.
+- [x] Duplicate rows because of multiple *Recovery Amounts (percent)*.  As some entries in the loss data template are updated, duplicate rows are created.  Would result in double-counting if not resolved.
 - [ ] Different *year of discovery* from *year of occurrence*.  Not an issue of discovered before occurrence; but discovery after occurrence would cause retroactive adjustments to reports.
 
 ## Datasets
