@@ -66,12 +66,12 @@ As the resident data scientist in the Risk Management Department in HQ, fashion 
 ```
 ./
 └── business-unit/
-		└── region-name/
-			└── period.xlsx
-					└── [period.xlsx]!Conso
-					└── [period.xlsx]!Risk Categories
-					└── [period.xlsx]!loss-events-per-risk-category
-					└── [period.xlsx]!loss-events-per-risk-category
+	└── region-name/
+		└── period.xlsx
+			└── [period.xlsx]!Conso
+			└── [period.xlsx]!Risk Categories
+			└── [period.xlsx]!loss-events-per-risk-category
+			└── [period.xlsx]!loss-events-per-risk-category
 ```
 How frequent loss data collection is done should vary for the different business units based on the nature of the risks involved; e.g. quarterly for business units prone to high frequency-low severity loss events, or annual for business units subject to low frequency-high severity loss events
 - [ ] A more natural set up of simulated raw data files is to exclude *Region* and *Business* from the regional loss data templates since it be inefficient for the regional business units during encoding
