@@ -8,14 +8,21 @@
 
 | Filename | Description | Source | Documentation | Columns | Rows | Size |
 |:---------|:------------|:-------|:--------------|--------:|-----:|-----:|
-| `WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx` | Operational loss events | [Watson Analytics](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx) | [Wiki](https://en.wikipedia.org/wiki/Operational_risk)<br/>`./Docs/d355.pdf` | 13 columns | 1,402 rows | 598,389 bytes |
+| `WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx` | [Operational] loss data template | [Watson Analytics](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx) | [BCBS](https://www.bis.org/bcbs/publications.htm?a=1&tid=28&mp=any&pi=title&bv=list&tid=28)<br/>`./Docs/d355.pdf`<br/>`./Docs/bcbs196.pdf`<br/>`./Docs/bcbs195.pdf`<br/>`./Docs/oprdataq.xls` | 13 columns | 1,402 rows | 598,389 bytes |
 
 ### [Parsed data files](https://drive.google.com/open?id=16DUp_e_asEP8LjmXfVqzEj6efqB44qvP)
 
-| Data file | Description | Input data | Processing script |
-|:--|:--|:--|:--|
-| `data00_raw ingest.rds` | Loaded raw data | `WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx` | `script00_raw ingest.R` |
-| `data01_parsed ingest.rds` | Cleaned raw data | `data00_raw ingest.rds` | `script01_inspect and parse.ipynb` |
+| Data file | Description | Columns | Rows | Input data | Processing script |
+|:--|:--|--:|--:|:--|:--|
+| `data00_raw ingest.rds` | Loaded raw data | 13 columns | 1,402 rows | `WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx` | `script00_raw ingest.R` |
+| `data01_parsed ingest.rds` | Cleaned raw data | 12 columns | 1,402 rows | `data00_raw ingest.rds` | `script01_inspect and parse.ipynb` |
+
+#### Unresolved issues
+
+- [ ] Duplicate rows because of multiple *Recovery Amounts (percent)*.  As some entries in the loss data template are updated, duplicate rows are created.  Would result in double-counting if not resolved.
+- [ ] Different *year of discovery* from *year of occurrence*.  Not an issue of discovered before occurrence; but discovery after occurrence would cause retroactive adjustments to reports.
+
+## Datasets
 
 ### `WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx`
 
@@ -24,7 +31,7 @@
 * __Region__: Region of event.
 * __Business__: Business line affected.
 * __Name__: Key; name of event.
-* __Status__: Status of recovery or loss event(?); sequence of status updates unknown
+* __Status__: Status of recovery; sequence of status updates unknown
 * __Risk Category__: Level 1 risk category.
 	- *Clients, Products and Business Practices*: market manipulation, antitrust, improper trade, product defects, fiduciary breaches, account churning
 	- *Execution, Delivery and Process Management*: data entry errors, accounting errors, failed mandatory reporting, negligent loss of client assets
@@ -39,7 +46,7 @@
 * __Year__: Year of occurrence.
 * __Net Loss__: Net loss is defined as the loss after taking into account the impact of recoveries.
 * __Recovery Amount__: The recovery is an independent occurrence, related to the original loss event, separate in time, in which funds or inflows of economic benefits are received from a third party.
-* __Estimated Gross Loss__: Gross loss is a loss before recoveries of any type.
+* __Estimated Gross Loss__: is a loss before recoveries of any type.
 * __Recovery Amount (percent)__<br/>
 	![](http://latex.codecogs.com/gif.latex?\frac{\text{Recovery&space;Amount}}{\text{Net&space;Loss}}&space;\cdot&space;100)
 

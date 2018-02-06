@@ -152,9 +152,9 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="left"><code>WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx</code></td>
-<td align="left">Operational loss events</td>
+<td align="left">[Operational] loss data template</td>
 <td align="left"><a href="https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx">Watson Analytics</a></td>
-<td align="left"><a href="https://en.wikipedia.org/wiki/Operational_risk">Wiki</a><br /><code>./Docs/d355.pdf</code></td>
+<td align="left"><a href="https://www.bis.org/bcbs/publications.htm?a=1&amp;tid=28&amp;mp=any&amp;pi=title&amp;bv=list&amp;tid=28">BCBS</a><br /><code>./Docs/d355.pdf</code><br /><code>./Docs/bcbs196.pdf</code><br /><code>./Docs/bcbs195.pdf</code><br /><code>./Docs/oprdataq.xls</code></td>
 <td align="right">13 columns</td>
 <td align="right">1,402 rows</td>
 <td align="right">598,389 bytes</td>
@@ -164,8 +164,10 @@ $(document).ready(function () {
 </div>
 <div id="parsed-data-files" class="section level3">
 <h3><a href="https://drive.google.com/open?id=16DUp_e_asEP8LjmXfVqzEj6efqB44qvP">Parsed data files</a></h3>
-<table style="width:22%;">
+<table style="width:33%;">
 <colgroup>
+<col width="5%"></col>
+<col width="5%"></col>
 <col width="5%"></col>
 <col width="5%"></col>
 <col width="5%"></col>
@@ -175,6 +177,8 @@ $(document).ready(function () {
 <tr class="header">
 <th align="left">Data file</th>
 <th align="left">Description</th>
+<th align="right">Columns</th>
+<th align="right">Rows</th>
 <th align="left">Input data</th>
 <th align="left">Processing script</th>
 </tr>
@@ -183,18 +187,32 @@ $(document).ready(function () {
 <tr class="odd">
 <td align="left"><code>data00_raw ingest.rds</code></td>
 <td align="left">Loaded raw data</td>
+<td align="right">13 columns</td>
+<td align="right">1,402 rows</td>
 <td align="left"><code>WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx</code></td>
 <td align="left"><code>script00_raw ingest.R</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>data01_parsed ingest.rds</code></td>
 <td align="left">Cleaned raw data</td>
+<td align="right">12 columns</td>
+<td align="right">1,402 rows</td>
 <td align="left"><code>data00_raw ingest.rds</code></td>
 <td align="left"><code>script01_inspect and parse.ipynb</code></td>
 </tr>
 </tbody>
 </table>
+<div id="unresolved-issues" class="section level4">
+<h4>Unresolved issues</h4>
+<ul>
+<li>[ ] Duplicate rows because of multiple <em>Recovery Amounts (percent)</em>. As some entries in the loss data template are updated, duplicate rows are created.</li>
+<li>[ ] Different <em>year of discovery</em> from <em>year of occurrence</em>. Not an issue of discovered before occurrence; but discovery after occurrence would cause retroactive adjustments to reports.</li>
+</ul>
 </div>
+</div>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
 <div id="wa_fn-usec_-banking-loss-events-2007-14.xlsx" class="section level3">
 <h3><code>WA_Fn-UseC_-Banking-Loss-Events-2007-14.xlsx</code></h3>
 <div id="schema" class="section level4">
@@ -203,7 +221,7 @@ $(document).ready(function () {
 <li><strong>Region</strong>: Region of event.</li>
 <li><strong>Business</strong>: Business line affected.</li>
 <li><strong>Name</strong>: Key; name of event.</li>
-<li><strong>Status</strong>: Status of recovery or loss event(?)</li>
+<li><strong>Status</strong>: Status of recovery or loss event(?); sequence of status updates unknown</li>
 <li><strong>Risk Category</strong>: Level 1 risk category.
 <ul>
 <li><em>Clients, Products and Business Practices</em>: market manipulation, antitrust, improper trade, product defects, fiduciary breaches, account churning</li>
@@ -215,13 +233,13 @@ $(document).ready(function () {
 <li><em>Business Disruption and System Failures</em>: utility disruptions, software failures, hardware failures</li>
 </ul></li>
 <li><strong>Risk Sub-Category</strong>: Level 2 risk category.</li>
-<li><strong>Discovery Date</strong>: Date of discovery of loss event.</li>
-<li><strong>Occurrence Start Date</strong>: Starting date of occurrence of loss event.</li>
+<li><strong>Discovery Date</strong>: Date of discovery of loss event. Ranges from <code>2007-01-02</code> to <code>2014-12-23</code>.</li>
+<li><strong>Occurrence Start Date</strong>: Starting date of occurrence of loss event. Ranges from <code>2007-01-02</code> to <code>2014-12-26</code>.</li>
 <li><strong>Year</strong>: Year of occurrence.</li>
 <li><strong>Net Loss</strong>: Net loss is defined as the loss after taking into account the impact of recoveries.</li>
 <li><strong>Recovery Amount</strong>: The recovery is an independent occurrence, related to the original loss event, separate in time, in which funds or inflows of economic benefits are received from a third party.</li>
 <li><strong>Estimated Gross Loss</strong>: Gross loss is a loss before recoveries of any type.</li>
-<li><strong>Recovery Amount (percent)</strong><br /> <img src="data:image/gif;base64,R0lGODlhkgESAKIHAAgICJiYmExMTNzc3LS0tHBwcCwsLP///yH5BAEAAAcALAAAAACSARIAAAP/eLpX/DDK+Ry9OOvNu/9gZoVkaXJjNgjDSQ7pAgexe8DM0IY6VBiAglBQ2NmOmgIB+TLmUj2eswE0rgCC5SW6+GFrTJzmiuHesg9CYK1VqNmSYiRLAJ/kC0GApJ+nfkyBEwQAe4IefT5OiSCMCwEGAhUajgqRhxVTFwSSF4kzAG0HnAsGO6SWmgedDwMAqjasCq8ktBChDISwmDYBhbwctg+yB8IfxgprwgOiFMjFhsDEGAXRE8i4eW0BnWjJ02oRBAaY4TIAL+gQugwC6sCBewZ28K3vudau6es6v267Oe65eRbI3AZTWwQWEyWM0CwjDjO1+jGvzZsBa6KxGYeP/wCBKXhgGJincc0INUrUsBBJsgK5LsgyplDjEaLJUzQUuNoh080ajGt01lmAqlULAawyAs2ydMobPCiJdrq4xhvLahJvUMSazCRRGh656dhqzVCBd9Yeeb1q7eygm/h+fpWrKE2Ammo93nvagi2DbDeWvdp5bso0BY6YudpDBLEhpF0szBs2zNqnJR8DL7FVyVIWbgbSrjLETIEQSxa46sNYbIeBJZcV/2rMmjMYLYBufPQ3zhA3BqrR1d7RR7YhjnlEr6rcjjTmvrg4iyadTfRlxxAmRwhONPVx73MqSLaQCLJp6slvtSGsc7BgJx4lGMP88lH9RJBkpGkmLDeMFv9aRPSXKv2l5Z8c+emUTH0LLaFPMiLpVAR9aQS2AGBEPaIOhQt2kRSDoTj4Di0cHvDbhZrEN2AXL/03ykC3TMGaZ7q5JOEOyLjSTIcX4maBEafdII4oCQpp4n2+gajFM4CxF1g/VhhzmIU+xOBPa7Moh1ga9wShVAXECJjLPb484CVdV14YDXsFJFVMNXQ1AEab7UEAgxBt3hPkKiMwciWbnTxoWp/RiJkHl3/BGQBIYSqU2UAzJvrlKI7mCE1h7WERpabh/SXalbb8SaJCC2EKqZPs6DQlcmaKwt6DTrZCDJ3t7RIamNsx6JapvNZK1DuvPRJrjxEEe+Q6YxoBWDb/rzYErBYnztJGf9OsgKuvEtwK3DRpeWmPJrQCx+ANUP6ahjvnKmRtr0/W2S6MDRyGIWAR0Uvmjt/YKZCgv+3WyiPNFLebE1Gegl1ppaQwUkAEC6qTw9piSW6s0MlHXAzNNHuOfS9CHI1tHb/DkRYCA8ycbASbSvIeCJtYQZrvKlgyapN4jNi0N18IwV0BGYWWJP6W8hjLDInCyIlHyzLlaDuPi+UAk8ljxKKHPoCQIcaayAw6ZZKbisvniHIJwllTjRCEB5wdrcRYb9NCkWZCJ4pB7UFbX7RYYc2TLLToWFqRp+kN9pZWv22J2w51HcXVMqSlY3Zup2143cAJbiIr/yxIiNgOYrST3dQt9B215Pl+3e3crJxd1NlaTZB1F6LVUZMefSlqRQ11UK3VlzB8JLtF1QAJhDejhLam7RJOOkNQucApA/INaEkDDbZcwTonANzKVfTP6758Whl5xNX2M5wS/PPrnL+7XL0zk1J3up8VsWkRfG9+/MMPAUD1isbF/CgZEU3nukeX362Aat9rnvfyNA+bgCUuSgDOLkjlAjzU44K9WBoGQ2DBDXqQgwD5YAYOAyANlsCEIkwhsdKGLxV2AIUujOFyZMiBSHkqgoGwIQ1jKIY97bCGWvqhC3UoxDiownmC6GARU2iSIC5xOyF8IgaVKEXgiJAeVcyiEAmxqMV6cHGJCQAAOw==" /></li>
+<li><strong>Recovery Amount (percent)</strong><br /> <img src="data:image/gif;base64,R0lGODlhkgESAJEDABQUFLy8vGBgYP///yH5BAEAAAMALAAAAACSARIAQAL/nD+Cy+2/FJy02ouz3rzKDoYi9lWBEIxciQRAI7BAasw1DS8uAqDBH2HtGENDseYDDmwL5sBFix1SvZ8ywTJIny9d7NvVfrYJnBMqNoaxB/KxrVtXrcE4EQfFHebKN1f/tITH5FI1BWDIIAMouEdzZuPXqDb4A5mCAnOiosnp+bnxkwlK+jBaipqqyKj6uUm0BvqqBiKJ1hbb6kmVpdtgWyJ54WfVM8UKC4vs2gvh5OD3DHlzONU8iXBqbRWTcmKFl/VNMw5U7rONI4B4CvVRTp4U/+11Ba+F/L0ejxjeX9Ym3Ch9gM5FETgvHBF0T+Q15GaP4bpnCX45fBiFHRhC/yi0gcMDbuHCkBhPZCLYgqFJduHobdOWjZWPayG0wcxwkw0uX6Vu8YSQ0+YyD4zWsaAZk4ExXTkfzDI179ksjo4UOfBoCZOEUWS2LIWTNKARb95sMMk5x+iqsWmWbJWwAwgTGwPB0VUgN0qvjGNv+S2xJS4VvU+y0hJrNSw+tubMHkx8K0vdxU2aBQ7zKvDbHNkkLOU6Bm6Ym5cOGaaEWJG4WEWkWNKRenExPZWMyNbzdckan4VZH/lK6LRtYWeFxCGHOXmg3x+KL1f++ArMk8IDobZOfUqE3H9aALzCHa+crWYoL1lbrUVrvMxv89Bzakv8Mb8aokL6M/+EuUP1a//A71+ApgiowlPWkMGMerUUpdEX/RFoQVP+XZGSgh1QmMA/Rhj1IIYTIdgTgBvmckdKBXVEG4pX/ULRJ4uA0CI23UF4IXcExvhiBy2ecMaD1DTh4wgixuYARc+0Q5416FnDUjouYfHaMXSExWMihc0iCkRVTrfGPjqIot6UD9UlGjlglkSmkiW60U2WENWT5oYbJjHQh4DU2WRf7xi0JXxajPYLmH1mQ+KGT15pD0kRFKRom7upOGhV1/3hE28YSjoca6Mhp52FmK5jqHXRsOIEl6EWwakjZQUEKkZcwFbEjjs9l55Or6p6ayOrtvWjp722Sk+q7325B3vbhSrjjHbqSBpYG3AF2gJmhwGU6yQtlkZJpWc0I4lUhHTBW4WdmfYARSD+SWi0BVGkLabVYTpshkSoi+m3yA0i6VNOlCrOUe/E2CuvnRYrRIvntirlNCmxhrCak143RLu2xtvrEAprYcpqSpWFFzbxbVwRNsXcqgRd9BZbWMWDieVcvipXO6yl6wo7ixSeEVZVHruycXPIGAMZco9xgfsIJsccBzJbJj/sFc7UZhZPYhRnEokxK9u6NLxTRf3rMoUKGSSNAZ4r9gUSlk3j2WiLC6TaFw65tiqZwR23fXWvbeDdUudHt95+i93336UEDmEBADs=" /></li>
 </ul>
 </div>
 <div id="sample" class="section level4">

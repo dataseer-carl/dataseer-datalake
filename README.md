@@ -25,7 +25,7 @@ Under construction.
 
 Data file hosting.
 
-`dump://` is located in `~/Data/DataLake` in [GDrive]((https://drive.google.com/drive/folders/1IQXPXMZSEK4QK_gKK2ERp9pOs4wJ_dog?usp=sharing)).  
+`dump://` is located in `~/Data/DataLake` in [GDrive](https://drive.google.com/drive/folders/1IQXPXMZSEK4QK_gKK2ERp9pOs4wJ_dog?usp=sharing).  
 
 Currently hosted in Carl Calub's GDrive.
 

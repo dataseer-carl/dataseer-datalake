@@ -119,316 +119,159 @@ $(document).ready(function () {
 </div>
 
 
-<div id="ibm-watson-hr-employee-attrition" class="section level1">
-<h1><a href="https://www.ibm.com/communities/analytics/watson-analytics-blog/guide-to-sample-datasets/">IBM Watson HR Employee Attrition</a></h1>
+<div id="operational-loss-report" class="section level1">
+<h1>Operational Loss Report</h1>
+<div id="scenario" class="section level2">
+<h2>Scenario</h2>
+<p>The Risk Management Department in the HQ of Chitty City Bang Bank, Inc. receives data on operational loss events in the different business lines.</p>
+<p>The filled out operational loss data templates of each business unit are consolidated by the corresponding office in HQ. These are collated from the loss data templates they receive from the regional offices. The data flow is depicted in the diagram below:</p>
 <blockquote>
-<p>Find out the leading drivers of Employee Attrition. Track and analyze employee satisfaction and retain valuable employees.</p>
+<p>Regional business unit → HQ business unit → HQ Risk Management Department</p>
 </blockquote>
-<div id="data-files" class="section level2">
-<h2>Data Files</h2>
-<div id="raw-data-files" class="section level3">
-<h3><a href="https://drive.google.com/open?id=1Aezowz0EZbknJAJqykC4PG6VIj11KodG">Raw data files</a></h3>
-<table style="width:100%;">
-<colgroup>
-<col width="14%"></col>
-<col width="18%"></col>
-<col width="12%"></col>
-<col width="21%"></col>
-<col width="13%"></col>
-<col width="9%"></col>
-<col width="9%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Filename</th>
-<th align="left">Description</th>
-<th align="left">Source</th>
-<th align="left">Documentation</th>
-<th align="right">Columns</th>
-<th align="right">Rows</th>
-<th align="right">Size</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>WA_Fn-UseC_-HR-Employee-Attrition.csv</code></td>
-<td align="left">Collated employee records and survey results</td>
-<td align="left"><a href="https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-HR-Employee-Attrition.csv">Watson Analytics</a></td>
-<td align="left"><a href="https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset">Kaggle</a></td>
-<td align="right">35 columns</td>
-<td align="right">1,470 rows</td>
-<td align="right">227,977 bytes</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="parsed-data-files" class="section level3">
-<h3><a href="https://drive.google.com/open?id=1DH7K1KfKAMBOkpaGd5pEn8wtcQ5ZDfqu">Parsed data files</a></h3>
-<table style="width:33%;">
-<colgroup>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Data file</th>
-<th align="left">Description</th>
-<th align="right">Columns</th>
-<th align="right">Rows</th>
-<th align="left">Input data</th>
-<th align="left">Processing script</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>data00_raw ingest.rds</code></td>
-<td align="left">Loaded raw data</td>
-<td align="right">35 columns</td>
-<td align="right">1,470 rows</td>
-<td align="left"><code>WA_Fn-UseC_-HR-Employee-Attrition.csv</code></td>
-<td align="left"><code>script00_raw ingest.R</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>data01_parsed ingest.rds</code></td>
-<td align="left">Cleaned raw data</td>
-<td align="right">29 columns</td>
-<td align="right">1,470 rows</td>
-<td align="left"><code>data00_raw ingest.rds</code></td>
-<td align="left"><code>script01_inspect and parse.ipynb</code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>As the resident data scientist in the Risk Management Department in HQ, fashion an operational loss report. Use the following questions as guidelines:</p>
+<ul>
+<li>Where did losses come from?</li>
+<li>Monitoring for breakdown of controls:</li>
+<li>mild but frequent losses</li>
+<li>rare but severe losses</li>
+<li>recovery rates</li>
+<li>Status of recoveries</li>
+<li>Historical trend of losses</li>
+</ul>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
-<div id="wa_fn-usec_-hr-employee-attrition.csv" class="section level3">
-<h3><code>WA_Fn-UseC_-HR-Employee-Attrition.csv</code></h3>
-<div id="schema" class="section level4">
-<h4>Schema</h4>
-<ul>
-<li><strong>Age</strong></li>
-<li><strong>Attrition</strong>: Has employee left the company: <em>Yes</em>, <em>No</em></li>
-<li><strong>BusinessTravel</strong><br />
-<ul>
-<li><em>Travel_Frequently</em></li>
-<li><em>Travel_Rarely</em></li>
-<li><em>Non-travel</em></li>
-</ul></li>
-<li><strong>DailyRate</strong><br /></li>
-<li><strong>Department</strong><br />
-<ul>
-<li><em>Sales</em></li>
-<li><em>Research &amp; Development</em></li>
-<li><em>Human Resources</em></li>
-</ul></li>
-<li><strong>DistanceFromHome</strong><br /></li>
-<li><strong>Education</strong><br />
-<ul>
-<li><em>1</em> ‘Below College’</li>
-<li><em>2</em> ‘College’</li>
-<li><em>3</em> ‘Bachelor’</li>
-<li><em>4</em> ‘Master’</li>
-<li><em>5</em> ‘Doctor’</li>
-</ul></li>
-<li><strong>EducationField</strong><br />
-<ul>
-<li><em>Human Resources</em></li>
-<li><em>Life Sciences</em></li>
-<li><em>Marketing</em></li>
-<li><em>Medical</em></li>
-<li><em>Technical degree</em></li>
-<li><em>Other</em></li>
-</ul></li>
-<li><strong>EmployeeCount</strong>: Dummy column</li>
-<li><strong>EmployeeNumber</strong>: Employee ID</li>
-<li><strong>EnvironmentSatisfaction</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>Gender</strong>: <em>Male</em>, <em>Female</em></li>
-<li><strong>HourlyRate</strong><br /></li>
-<li><strong>JobInvolvement</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>JobLevel</strong>: Ranges from 1–5</li>
-<li><strong>JobRole</strong>: Job title</li>
-<li><strong>JobSatisfaction</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>MaritalStatus</strong>: <em>Single</em>, <em>Married</em>, <em>Divorced</em></li>
-<li><strong>MonthlyIncome</strong></li>
-<li><strong>MonthlyRate</strong></li>
-<li><strong>NumCompaniesWorked</strong></li>
-<li><strong>Over18</strong>: All <em>Yes</em></li>
-<li><strong>OverTime</strong>: <em>Yes</em>, <em>No</em></li>
-<li><strong>PercentSalaryHike</strong><br /></li>
-<li><strong>PerformanceRating</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Good’</li>
-<li><em>3</em> ‘Excellent’</li>
-<li><em>4</em> ‘Outstanding’</li>
-</ul></li>
-<li><strong>RelationshipSatisfaction</strong><br />
-<ul>
-<li><em>1</em> ‘Low’</li>
-<li><em>2</em> ‘Medium’</li>
-<li><em>3</em> ‘High’</li>
-<li><em>4</em> ‘Very high’</li>
-</ul></li>
-<li><strong>StandardHours</strong>: All <em>80</em></li>
-<li><strong>StockOptionLevel</strong>: Ranges 0–3</li>
-<li><strong>TotalWorkingYears</strong></li>
-<li><strong>TrainingTimesLastYear</strong></li>
-<li><strong>WorkLifeBalance</strong><br />
-<ul>
-<li><em>1</em> ‘Bad’</li>
-<li><em>2</em> ‘Good’</li>
-<li><em>3</em> ‘Better’</li>
-<li><em>4</em> ‘Best’</li>
-</ul></li>
-<li><strong>YearsAtCompany</strong></li>
-<li><strong>YearsInCurrentRole</strong></li>
-<li><strong>YearsSinceLastPromotion</strong></li>
-<li><strong>YearsWithCurrManager</strong></li>
-</ul>
-</div>
-</div>
-<div id="sample" class="section level3">
-<h3>Sample</h3>
-<table>
+<blockquote>
+<p><strong>Note</strong>: the path <code>../../Data/*</code> pertains to a processed data file by jobs under the scenario’s <code>data-source</code>.</p>
+<p>The path <code>../scenario-name/*</code> pertains to a processed data files under a different <code>scenario-name</code> from the same <code>data-source</code>.</p>
+<p>A name without a path pertains to a data file in the same <code>scenario-name</code>.</p>
+</blockquote>
+<table style="width:50%;">
 <colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
 </colgroup>
 <thead>
 <tr class="header">
-<th align="right">Age</th>
-<th align="center">Attrition</th>
-<th align="center">BusinessTravel</th>
-<th align="right">DailyRate</th>
-<th align="left">Department</th>
-<th align="right">DistanceFromHome</th>
-<th align="center">Education</th>
-<th align="left">EducationField</th>
-<th align="right">EmployeeCount</th>
-<th align="center">EmployeeNumber</th>
-<th align="center">EnvironmentSatisfaction</th>
-<th align="center">Gender</th>
-<th align="right">HourlyRate</th>
-<th align="center">JobInvolvement</th>
-<th align="center">JobLevel</th>
-<th align="left">JobRole</th>
-<th align="center">JobSatisfaction</th>
-<th align="center">MaritalStatus</th>
-<th align="right">MonthlyIncome</th>
-<th align="right">MonthlyRate</th>
-<th align="right">NumCompaniesWorked</th>
-<th align="center">Over18</th>
-<th align="center">OverTime</th>
-<th align="right">PercentSalaryHike</th>
-<th align="center">PerformanceRating</th>
-<th align="center">RelationshipSatisfaction</th>
-<th align="right">StandardHours</th>
-<th align="center">StockOptionLevel</th>
-<th align="right">TotalWorkingYears</th>
-<th align="right">TrainingTimesLastYear</th>
-<th align="center">WorkLifeBalance</th>
-<th align="right">YearsAtCompany</th>
-<th align="right">YearsInCurrentRole</th>
-<th align="right">YearsSinceLastPromotion</th>
-<th align="right">YearsWithCurrManager</th>
+<th align="left">Dataset</th>
+<th align="left">Description</th>
+<th align="right">Columns</th>
+<th align="right">Rows</th>
+<th align="center">Input Data</th>
+<th align="center">Data Processing Scripts</th>
+<th align="left">csv Data File</th>
+<th align="left">xlsx Data File</th>
+<th align="left">R Data File</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">41</td>
-<td align="center">Yes</td>
-<td align="center">Travel_Rarely</td>
-<td align="right">1102</td>
-<td align="left">Sales</td>
-<td align="right">1</td>
-<td align="center">2</td>
-<td align="left">Life Sciences</td>
-<td align="right">1</td>
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">Female</td>
-<td align="right">94</td>
-<td align="center">3</td>
-<td align="center">2</td>
-<td align="left">Sales Executive</td>
-<td align="center">4</td>
-<td align="center">Single</td>
-<td align="right">5993</td>
-<td align="right">19479</td>
-<td align="right">8</td>
-<td align="center">Y</td>
-<td align="center">Yes</td>
-<td align="right">11</td>
-<td align="center">3</td>
-<td align="center">1</td>
-<td align="right">80</td>
-<td align="center">0</td>
-<td align="right">8</td>
-<td align="right">0</td>
-<td align="center">1</td>
-<td align="right">6</td>
-<td align="right">4</td>
-<td align="right">0</td>
-<td align="right">5</td>
+<td align="left">Parsed ingest</td>
+<td align="left">Consolidated loss events</td>
+<td align="right">12 columns</td>
+<td align="right">1,402 rows</td>
+<td align="center"><code>../../Data/data01_parsed ingest.rds</code></td>
+<td align="center"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://drive.google.com/open?id=1GB8wcspcaBwh4ea9FUfCsCrIKQMutQ6N"><code>data01_parsed ingest.rds</code></a></td>
+</tr>
+<tr class="even">
+<td align="left">Reporting frequency</td>
+<td align="left">Reporting frequency policy per biz unit</td>
+<td align="right">2 columns</td>
+<td align="right">7 rows</td>
+<td align="center"><code>../../Data/data01_parsed ingest.rds</code><br /><code>../../Scripts/script01_inspect and parse.ipynb</code></td>
+<td align="center"><code>prep01_from deduped ingest.R</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://drive.google.com/open?id=1Jxsnm3NBSEsZTFnpuvNi2lzdvwG1pugV"><code>ref00_freq and cats.RData</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left">Risk categories</td>
+<td align="left">Risk categories and sub-categories recommended by Basel</td>
+<td align="right">2 columns</td>
+<td align="right">21 rows</td>
+<td align="center"><code>../../Data/data01_parsed ingest.rds</code><br /><code>../../Scripts/script01_inspect and parse.ipynb</code></td>
+<td align="center"><code>prep01_from deduped ingest.R</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://drive.google.com/open?id=1Jxsnm3NBSEsZTFnpuvNi2lzdvwG1pugV"><code>ref00_freq and cats.RData</code></a></td>
+</tr>
+<tr class="even">
+<td align="left">Regional business units reports</td>
+<td align="left">Snapshot of file dump collated by regional business units</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="center"><code>../../Data/data02_deduped ingest.rds</code></td>
+<td align="center"><code>prep01_from deduped ingest.R</code></td>
+<td align="left"></td>
+<td align="left"><a href="https://drive.google.com/open?id=1sjTtdhD0_S6ClQCpOLJtZM_GFliE-SoC"><code>case_Operational Loss Report_raw files/business-unit/region-name/[oprdataq_biz-unit_region-name_period-name.xlsx]!Conso</code></a></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Consolidated annual data</td>
+<td align="left">Annual data files consolidated per year</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="center"><code>../../Data/data02_deduped ingest.rds</code></td>
+<td align="center"><code>prep01_from deduped ingest.R</code></td>
+<td align="left"></td>
+<td align="left"><a href="https://drive.google.com/open?id=1pX3H4ta8j00IWDKglebO40QrrSL7ZURk"><code>case_Operational Loss Report_annual conso/[CYyear-name.xlsx]!Bankwide</code></a></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> No csv-file is provided because in practice, loss events are encoded into loss data template xlsx-files.</p>
+<div id="loss-data-template" class="section level3">
+<h3>Loss data template</h3>
+<ul>
+<li><strong>Region</strong>: Region of event.</li>
+<li><strong>Business</strong>: Business line affected.</li>
+<li><strong>Name</strong>: Key; name of event.</li>
+<li><strong>Status</strong>: Status of recovery; sequence of status updates unknown</li>
+<li><strong>Risk Category</strong>: Level 1 risk category.
+<ul>
+<li><em>Clients, Products and Business Practices</em>: market manipulation, antitrust, improper trade, product defects, fiduciary breaches, account churning</li>
+<li><em>Execution, Delivery and Process Management</em>: data entry errors, accounting errors, failed mandatory reporting, negligent loss of client assets</li>
+<li><em>Employment Practices and Workplace Safety</em>: discrimination, workers compensation, employee health and safety</li>
+<li><em>Internal Fraud</em>: misappropriation of assets, tax evasion, intentional mismarking of positions, bribery</li>
+<li><em>External Fraud</em>: theft of information, hacking damage, third-party theft and forgery</li>
+<li><em>Damage to Physical Assets</em>: natural disasters, terrorism, vandalism</li>
+<li><em>Business Disruption and System Failures</em>: utility disruptions, software failures, hardware failures</li>
+</ul></li>
+<li><strong>Risk Sub-Category</strong>: Level 2 risk category.</li>
+<li><strong>Discovery Date</strong>: Date of discovery of loss event. Ranges from <code>2007-01-02</code> to <code>2014-12-23</code>.</li>
+<li><strong>Occurrence Start Date</strong>: Starting date of occurrence of loss event. Ranges from <code>2007-01-02</code> to <code>2014-12-26</code>.</li>
+<li><strong>Year</strong>: Year of occurrence.</li>
+<li><strong>Net Loss</strong>: Net loss is defined as the loss after taking into account the impact of recoveries.</li>
+<li><strong>Recovery Amount</strong>: The recovery is an independent occurrence, related to the original loss event, separate in time, in which funds or inflows of economic benefits are received from a third party.</li>
+<li><strong>Estimated Gross Loss</strong>: Gross loss is a loss before recoveries of any type.</li>
+<li><strong>Recovery Amount (percent)</strong><br /> <img src="data:image/gif;base64,R0lGODlhkgESAJEDABQUFLy8vGBgYP///yH5BAEAAAMALAAAAACSARIAQAL/nD+Cy+2/FJy02ouz3rzKDoYi9lWBEIxciQRAI7BAasw1DS8uAqDBH2HtGENDseYDDmwL5sBFix1SvZ8ywTJIny9d7NvVfrYJnBMqNoaxB/KxrVtXrcE4EQfFHebKN1f/tITH5FI1BWDIIAMouEdzZuPXqDb4A5mCAnOiosnp+bnxkwlK+jBaipqqyKj6uUm0BvqqBiKJ1hbb6kmVpdtgWyJ54WfVM8UKC4vs2gvh5OD3DHlzONU8iXBqbRWTcmKFl/VNMw5U7rONI4B4CvVRTp4U/+11Ba+F/L0ejxjeX9Ym3Ch9gM5FETgvHBF0T+Q15GaP4bpnCX45fBiFHRhC/yi0gcMDbuHCkBhPZCLYgqFJduHobdOWjZWPayG0wcxwkw0uX6Vu8YSQ0+YyD4zWsaAZk4ExXTkfzDI179ksjo4UOfBoCZOEUWS2LIWTNKARb95sMMk5x+iqsWmWbJWwAwgTGwPB0VUgN0qvjGNv+S2xJS4VvU+y0hJrNSw+tubMHkx8K0vdxU2aBQ7zKvDbHNkkLOU6Bm6Ym5cOGaaEWJG4WEWkWNKRenExPZWMyNbzdckan4VZH/lK6LRtYWeFxCGHOXmg3x+KL1f++ArMk8IDobZOfUqE3H9aALzCHa+crWYoL1lbrUVrvMxv89Bzakv8Mb8aokL6M/+EuUP1a//A71+ApgiowlPWkMGMerUUpdEX/RFoQVP+XZGSgh1QmMA/Rhj1IIYTIdgTgBvmckdKBXVEG4pX/ULRJ4uA0CI23UF4IXcExvhiBy2ecMaD1DTh4wgixuYARc+0Q5416FnDUjouYfHaMXSExWMihc0iCkRVTrfGPjqIot6UD9UlGjlglkSmkiW60U2WENWT5oYbJjHQh4DU2WRf7xi0JXxajPYLmH1mQ+KGT15pD0kRFKRom7upOGhV1/3hE28YSjoca6Mhp52FmK5jqHXRsOIEl6EWwakjZQUEKkZcwFbEjjs9l55Or6p6ayOrtvWjp722Sk+q7325B3vbhSrjjHbqSBpYG3AF2gJmhwGU6yQtlkZJpWc0I4lUhHTBW4WdmfYARSD+SWi0BVGkLabVYTpshkSoi+m3yA0i6VNOlCrOUe/E2CuvnRYrRIvntirlNCmxhrCak143RLu2xtvrEAprYcpqSpWFFzbxbVwRNsXcqgRd9BZbWMWDieVcvipXO6yl6wo7ixSeEVZVHruycXPIGAMZco9xgfsIJsccBzJbJj/sFc7UZhZPYhRnEokxK9u6NLxTRf3rMoUKGSSNAZ4r9gUSlk3j2WiLC6TaFw65tiqZwR23fXWvbeDdUudHt95+i93336UEDmEBADs=" /></li>
+</ul>
+</div>
+<div id="other-data-files-organization" class="section level3">
+<h3>Other data files organization</h3>
+<ul>
+<li><p>[x] The ideal organization of raw data files is:</p>
+<pre><code>./
+└── business-unit/
+    └── region-name/
+        └── period.xlsx
+                └── [period.xlsx]!Conso
+                └── [period.xlsx]!Risk Categories
+                └── [period.xlsx]!loss-events-per-risk-category
+                └── [period.xlsx]!loss-events-per-risk-category</code></pre>
+How frequent loss data collection is done should vary for the different business units based on the nature of the risks involved; e.g. quarterly for business units prone to high frequency-low severity loss events, or annual for business units subject to low frequency-high severity loss events</li>
+<li><p>[ ] A more natural set up of simulated raw data files is to exclude <em>Region</em> and <em>Business</em> from the regional loss data templates since it be inefficient for the regional business units during encoding</p></li>
+</ul>
 </div>
 </div>
 </div>
