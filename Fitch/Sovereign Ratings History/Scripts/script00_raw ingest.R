@@ -134,5 +134,11 @@ ratings.df <- ratings.unq %>%
 	)
 	## Ratings not converted to factors yet b/c of "suspended" and "withdrawn"
 
-saveRDS(ratings.df, file.path(cache.path, "data00_sanitised rating actions.rds"))
-write.csv(ratings.df, file.path(cache.path, "data00_sanitised rating actions.csv"), row.names = FALSE)
+clean.path <- file.path(cache.path, "data00_sanitised rating actions")
+rds.path <- paste0(clean.path, ".rds")
+saveRDS(ratings.df, rds.path)
+csv.path <- paste0(clean.path, ".csv")
+write.csv(ratings.df, csv.path, row.names = FALSE)
+
+drive_upload(rds.path, paste0(stage.path, "/"))
+drive_upload(csv.path, paste0(stage.path, "/"))
