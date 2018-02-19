@@ -8,15 +8,15 @@
 
 | Filename | Description | Source | Documentation | Columns | Rows | Size |
 |:---------|:------------|:-------|:--------------|--------:|-----:|-----:|
-| `sovereign_ratings_history.xls` | Log of changes in Fitch sovereign ratings | [`fitchratings.com`](https://www.fitchratings.com/web_content/ratings/sovereign_ratings_history.xls) | [`fitchratings.com`](https://www.fitchratings.com/site/definitions) | 7 columns | 983 rows | 193,024 bytes |
+| `sovereign_ratings_history.xls` | Fitch sovereign rating actions | [`fitchratings.com`](https://www.fitchratings.com/web_content/ratings/sovereign_ratings_history.xls) | [`fitchratings.com`](https://www.fitchratings.com/site/definitions) | 7 columns | 983 rows | 193,024 bytes |
 
 ### Parsed data files
 
 | Data file | Description | Columns | Rows | Input data | Processing script |
 |:--|:--|--:|--:|:--|:--|
 | `ref_ratings` | Short-term and long-term rating levels |  |  | `sovereign_ratings_history.xls` | `script00_raw ingest.R` |
-| `data00_sanitised rating actions.rds` | Cleaned ratings changes log | 7 columns | 980 rows | `sovereign_ratings_history.xls` | `script00_raw ingest.R` |
-| `data00_sanitised rating actions.csv` | Cleaned ratings changes log | 7 columns | 980 rows | `sovereign_ratings_history.xls` | `script00_raw ingest.R` |
+| `data00_sanitised rating actions.rds` | Cleaned rating actions | 7 columns | 980 rows | `sovereign_ratings_history.xls` | `script00_raw ingest.R` |
+| `data00_sanitised rating actions.csv` | Cleaned rating actions | 7 columns | 980 rows | `sovereign_ratings_history.xls` | `script00_raw ingest.R` |
 
 ## Datasets
 
