@@ -54,3 +54,4 @@ raw.ls %>% saveRDS(data00.path)
 
 ### Upload to dump
 drive_upload(data00.path, paste0(stage.path, "/"))
+# Update readme.md
