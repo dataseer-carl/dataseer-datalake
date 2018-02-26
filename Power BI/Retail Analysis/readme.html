@@ -239,6 +239,70 @@ $(document).ready(function () {
 <td align="left"><code>Sales.csv</code><br /><code>Retail Analysis.xlsx</code></td>
 <td align="left"><code>script00_raw ingest.R</code></td>
 </tr>
+<tr class="even">
+<td align="left"><code>data01_fixed trans and ref.RData</code></td>
+<td align="left"><em>cust.ref</em>, <em>prod.ref</em>, <em>sales.df</em></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="left"><code>Sales.csv</code><br /><code>[Retail Analysis.xlsx]Item!</code></td>
+<td align="left"><code>script01_parse and clean ingest.ipynb</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>data02_fixed loc ref.RData</code></td>
+<td align="left"><em>district.df</em>, <em>store.df</em></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="left"><code>Sales.csv</code><br /><code>[Retail Analysis.xlsx]Item!</code></td>
+<td align="left"><code>script01_parse and clean ingest.ipynb</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>data03_Monthly product segment sales per customer.csv</code></td>
+<td align="left">Fixed <code>Sales.csv</code></td>
+<td align="right">9 columns</td>
+<td align="right">327,165 rows</td>
+<td align="left"><code>data01_fixed trans and ref.RData</code></td>
+<td align="left"><code>script02_export ingested.R</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code>data04_cleaned lookup.xlsx</code></strong></td>
+<td align="left">Cleaned lookup tables</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="left"></td>
+<td align="left"><code>script02_export ingested.R</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>[data04_cleaned lookup.xlsx]Customer!</code></td>
+<td align="left">Customer accounts</td>
+<td align="right">2 columns</td>
+<td align="right">78 rows</td>
+<td align="left"><code>data01_fixed trans and ref.RData</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[data04_cleaned lookup.xlsx]Product segment!</code></td>
+<td align="left">Product segment catalog</td>
+<td align="right">3 columns</td>
+<td align="right">1,415 rows</td>
+<td align="left"><code>data01_fixed trans and ref.RData</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>[data04_cleaned lookup.xlsx]Store!</code></td>
+<td align="left">Store list</td>
+<td align="right">10 columns</td>
+<td align="right">104 rows</td>
+<td align="left"><code>data02_fixed loc ref.RData</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[data04_cleaned lookup.xlsx]District!</code></td>
+<td align="left">Lookup for district details of stores</td>
+<td align="right">3 columns</td>
+<td align="right">9 columns</td>
+<td align="left"><code>data02_fixed loc ref.RData</code></td>
+<td align="left"></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -376,11 +440,11 @@ $(document).ready(function () {
 <div id="schema-2" class="section level4">
 <h4>Schema</h4>
 <ul>
-<li><strong>ItemID</strong></li>
-<li><strong>Segment</strong>: dead link</li>
-<li><strong>Category</strong>: Code and category</li>
+<li><strong>ItemID</strong>: Product-buyer pair</li>
 <li><strong>Buyer</strong>: <em>Last name</em>, <em>first name</em></li>
-<li><strong>FamilyNane</strong></li>
+<li><strong>Category</strong>: Product category of product family [name]</li>
+<li><strong>FamilyNane</strong>: Family [Name] ID of product segment</li>
+<li><strong>Segment</strong>: Segment ID of product</li>
 </ul>
 </div>
 <div id="sample-2" class="section level4">
