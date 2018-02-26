@@ -20,6 +20,14 @@
 | Data file | Description | Columns | Rows | Input data | Processing script |
 |:--|:--|--:|--:|:--|:--|
 | `data00_raw ingest.rds` | Raw load of both fact and lookup tables |  |  | `Sales.csv`<br/>`Retail Analysis.xlsx` | `script00_raw ingest.R` |
+| `data01_fixed trans and ref.RData` | *cust.ref*, *prod.ref*, *sales.df* |  |  | `Sales.csv`<br/>`[Retail Analysis.xlsx]Item!` | `script01_parse and clean ingest.ipynb` |
+| `data02_fixed loc ref.RData` | *district.df*, *store.df* |  |  | `Sales.csv`<br/>`[Retail Analysis.xlsx]Item!` | `script01_parse and clean ingest.ipynb` |
+| **`data03_Monthly product segment sales per customer.csv`** | Fixed `Sales.csv` | 9 columns | 327,165 rows | `data01_fixed trans and ref.RData` | `script02_export ingested.R` |
+| **`data04_cleaned lookup.xlsx`** | Cleaned lookup tables |  |  |  | `script02_export ingested.R` |
+| `[data04_cleaned lookup.xlsx]Customer!` | Customer accounts | 2 columns | 78 rows | `data01_fixed trans and ref.RData` |  |
+| `[data04_cleaned lookup.xlsx]Product segment!` | Product segment catalog | 3 columns | 1,415 rows | `data01_fixed trans and ref.RData` |  |
+| `[data04_cleaned lookup.xlsx]Store!` | Store list | 10 columns | 104 rows | `data02_fixed loc ref.RData` |  |
+| `[data04_cleaned lookup.xlsx]District!` | Lookup for district details of stores | 3 columns | 9 columns | `data02_fixed loc ref.RData` |  |
 
 ## Datasets
 
@@ -74,11 +82,11 @@
 
 #### Schema
 
-* __ItemID__
-* __Segment__: dead link
-* __Category__: Code and category
+* __ItemID__: Product-buyer pair
 * __Buyer__: *Last name*, *first name*
-* __FamilyNane__
+* __Category__: Product category of product family [name]
+* __FamilyNane__: Family [Name] ID of product segment
+* __Segment__: Segment ID of product
 
 #### Sample
 
