@@ -7,6 +7,7 @@ Characterise and identify trends in behaviour of customers:
 * Customer life cycle
 * Customer purhcasing behaviour (frequency-value)
 * Customer segments
+* Sales drivers: customer acquisition, price changes, customer behaviour changes
 
 ## Datasets
 
