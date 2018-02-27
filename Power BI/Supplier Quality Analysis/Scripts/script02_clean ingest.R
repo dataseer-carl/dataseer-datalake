@@ -39,6 +39,27 @@ drive_download(data01.id, path = data01.path, overwrite = TRUE) ## Download raw 
 
 metrics.df <- readRDS(data01.path)
 
+## csv
+
+### Quoted csv
+csv0.path <- file.path(cache.path, "data03_metrics.csv")
+write.csv(metrics.df, csv0.path, row.names = FALSE, quote = TRUE)
+
+### csv
+csv1.path <- file.path(cache.path, "data03_metrics_noQuote.csv")
+write.csv(metrics.df, csv1.path, row.names = FALSE, quote = FALSE)
+
+### Pipe-delimited
+csv2.path <- file.path(cache.path, "data03_metrics_pipe.txt")
+write.table(metrics.df, csv2.path, row.names = FALSE, quote = FALSE, sep = "|")
+
+### tsv
+csv3.path <- file.path(cache.path, "data03_metrics.tsv")
+write.table(metrics.df, csv3.path, row.names = FALSE, quote = FALSE, sep = "\t")
+
+list(csv0.path, csv1.path, csv2.path, csv3.path) %>% 
+	lapply(drive_upload, path = paste0(stage.path, "/"))
+
 # Clean ####
 
 library(dplyr)

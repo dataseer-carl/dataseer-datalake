@@ -27,6 +27,10 @@
 | `data01_parsed ingest.rds` | Cleaned raw data with lookup values | 9 columns | 6,145 rows | `data00_raw ingest.rds` | `script01_parse ingest.R` |
 | `data02_metrics with plant address.xlsx` | With lookup table for *City* and *State* of *Plant* |  |  | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
 | `data02_metrics with plant address.RData` | With lookup table for *City* and *State* of *Plant* |  |  | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
+| `data03_metrics.csv` | Quoted csv of fact table | 9 columns | 6,145 rows | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
+| `data03_metrics_noQuote.csv` | Unquoted csv of fact table | 9 columns | 6,145 rows | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
+| `data03_metrics_pipe.txt` | Pipe-delimited fact table | 9 columns | 6,145 rows | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
+| `data03_metrics.tsv` | tsv fact table | 9 columns | 6,145 rows | `data01_parsed ingest.rds` | `script02_clean ingest.R` |
 
 ## Datasets
 
