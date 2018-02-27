@@ -27,7 +27,7 @@
 | `[data04_cleaned lookup.xlsx]Customer!` | Customer accounts | 2 columns | 78 rows | `data01_fixed trans and ref.RData` |  |
 | `[data04_cleaned lookup.xlsx]Product segment!` | Product segment catalog | 3 columns | 1,415 rows | `data01_fixed trans and ref.RData` |  |
 | `[data04_cleaned lookup.xlsx]Store!` | Store list | 10 columns | 104 rows | `data02_fixed loc ref.RData` |  |
-| `[data04_cleaned lookup.xlsx]District!` | Lookup for district details of stores | 3 columns | 9 columns | `data02_fixed loc ref.RData` |  |
+| `[data04_cleaned lookup.xlsx]District!` | Lookup for district details of stores | 3 columns | 9 rows | `data02_fixed loc ref.RData` |  |
 
 ## Datasets
 
