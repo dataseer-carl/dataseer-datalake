@@ -2,6 +2,13 @@
 
 > This industry sample dashboard and underlying report analyze retail sales data of items sold across multiple stores and districts. The metrics compare this year’s performance to last year’s in these areas: sales, units, gross margin, and variance, as well as new store analysis.
 
+## Scenario
+
+* Which stores are performing well?
+* Which categories are contributing to the increase in sales?
+* *markdown units vs regular units sold*
+* *high paying customers*
+
 ## Data Files
 
 ### [Raw data files](https://drive.google.com/open?id=1JEM2_Aa8ehTuon488P27EhG9zK9Um9g_)
