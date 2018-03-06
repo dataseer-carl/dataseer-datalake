@@ -95,6 +95,9 @@ drive_download(as_id(lookup.id), path = lookup.path, overwrite = TRUE) ## Downlo
 
 
 ## Raw ingest
+
+toDec <- function(x) sprintf(x, fmt = "%d")
+
 sheets.ls <- excel_sheets(lookup.path)
 lookup.ls <- lapply(
 	sheets.ls,
@@ -103,7 +106,8 @@ lookup.ls <- lapply(
 	}
 )
 names(lookup.ls) <- sheets.ls
-
+lookup.ls$Item %<>% mutate_at(vars(Buyer, Category), funs(as.character))
+lookup.ls$Item %<>% mutate_at(vars(ItemID, Segment), funs(toDec))
 # Save ####
 
 parsed.path <- file.path(cache.path, "data00u_raw ingest.RData")
