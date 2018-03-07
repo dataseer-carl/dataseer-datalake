@@ -3,9 +3,9 @@
 .Rhistory
 .RData
 .Ruserdata
-.DS_Store
 ## Ignore markdown previews
 .html
 ## Ignore data files
 **/Data/
 .httr-oauth
+.DS_Store
