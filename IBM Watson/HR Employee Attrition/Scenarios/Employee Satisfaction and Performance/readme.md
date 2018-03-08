@@ -21,9 +21,9 @@ Using the results from these two surveys *and* data from Pharma Drug's employee 
 
 | Dataset | Description | Columns | Rows | Input Data | Data Processing Scripts | csv Data File | xlsx Data File | R Data File |
 |:--|:--|--:|--:|:-:|:-:|:--|:--|:--|
-| Employee records | Employee database maintained by HR; collated from employee profile sheets and employee records database | 18 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Employee records.csv`](https://drive.google.com/open?id=18ad9cDTke0K17g5haW9vr8l7X9HIsV6M) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
-| Performance rating survey | Results of performance rating survey accomplished by managers | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Performance rating survey.csv`](https://drive.google.com/open?id=1UJSni8l-1TKbv0LeegE8p80aQ8s9VBW6) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
-| Satisfaction survey | Results of satisfaction survey accomplished by all staff | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00_from parsed ingest.R` | [`Satisfaction survey.csv`](https://drive.google.com/open?id=1XbTDzUDbKPyz8ZTFIHRYa0u5FRxIceNl) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1tpYNejB06-NvbSgA37jxpu0QAEMO8Fmg) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1PnW8k9y6k6S45iaoUN2x0hFp5gP51obk) |
+| Employee records | Employee database maintained by HR; collated from employee profile sheets and employee records database | 18 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00u_from parsed ingest.R` | [`case_Employee Satisfaction and Performance-Employee records.csv`](https://drive.google.com/open?id=1ecm9s1CIQts8BeAkQn294GBLSv_nVp_s) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1TYoUeJSBaciHurxTs7uB60zuFUCDxdiw) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1vagZQpCxxLUNh7TSX5HcqfeOa3d55_Il) |
+| Performance rating survey | Results of performance rating survey accomplished by managers | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00u_from parsed ingest.R` | [`case_Employee Satisfaction and Performance-Performance rating survey.csv`](https://drive.google.com/open?id=1SW-TcE67NDpz-cYViG1O000Yx2I6JJwe) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1TYoUeJSBaciHurxTs7uB60zuFUCDxdiw) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1vagZQpCxxLUNh7TSX5HcqfeOa3d55_Il) |
+| Satisfaction survey | Results of satisfaction survey accomplished by all staff | 6 columns | 1,470 rows | `../../Data/data01_parsed ingest.rds` | `prep00u_from parsed ingest.R` | [`case_Employee Satisfaction and Performance-Satisfaction survey.csv`](https://drive.google.com/open?id=1wR-I4G4exEwk17zcFFPKk_VGyBdS1wvL) | [`case_Employee Satisfaction and Performance.xlsx`](https://drive.google.com/open?id=1TYoUeJSBaciHurxTs7uB60zuFUCDxdiw) | [`case_Employee Satisfaction and Performance.RData`](https://drive.google.com/open?id=1vagZQpCxxLUNh7TSX5HcqfeOa3d55_Il) 
 
 ### Employee records
 
@@ -59,6 +59,7 @@ Using the results from these two surveys *and* data from Pharma Drug's employee 
 * __MonthlyIncome__: Current monthly salary
 * __StockOptionLevel__: Ranges 0--3
 * __SalaryHike__: Increase in salary by last promotion
+* __Status__: *Active* and *Inactive*
 
 ### Performance rating survey
 
