@@ -2,43 +2,59 @@
 # Copy paste at beginning of every R script
 # Edit as appropriate
 
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(googledrive)
+library(readxl)
+drive_auth()
+
+# ID of Datalake folder
+datalake.id = "1IQXPXMZSEK4QK_gKK2ERp9pOs4wJ_dog"
+datalake <- datalake.id %>% 
+	as_id() %>% drive_get() %>% drive_ls 
+
+# Author of dataset
 author.name <- "Power BI"
-data.source <- "Retail Analysis"
+author.folder <- datalake %>% filter(name == author.name) %>% use_series(id)  %>% 
+		as_id() %>% drive_get() %>% drive_ls()
+
+# Dataset folder
+data.source <- "Retail Analysis" 
+datasource.folder <- author.folder %>% filter(name == data.source) %>% use_series(id) %>% 
+	as_id() %>% drive_get() %>% drive_ls()
+
 
 ## Path to local (proxy for repo://)
-cache.path <- file.path(".", author.name, data.source, "Data")
+ cache.path <- file.path(".", author.name, data.source, "Data")
 
 ## Path to data://
-data.path <- file.path("~/Data/DataLake", author.name, data.source)
-stage.path <- file.path(data.path, "data")
-raw.path <- file.path(data.path, "raw")
-
-library(googledrive)
-drive_auth()
+ # Raw folder
+ raw.folder <- datasource.folder %>% filter(name == "raw") %>% use_series(id) %>% 
+ 	as_id() %>% drive_get() %>% drive_ls()
+ 
+ # Data folder
+ data.folder.id <- datasource.folder %>% filter(name == "data") %>% use_series(id)
+ data.folder <-	as_id(data.folder.id) %>% drive_get() %>% drive_ls()
 
 #*****************************************************************#
 
 # View extant data files ####
 
-library(magrittr)
-
-(dataset.files <- raw.path %>% drive_ls())
 
 # Sales.csv ####
 
 ## Download input data file
-dataset.file <- raw.path %>% 
-	file.path("Sales.csv") %>% ## Select file for download
-	drive_get()
-dataset.id <- as_id(dataset.file) ## Get ID for download
-dataset.path <- file.path(cache.path, dataset.file$name) # Assumes nrow = 1
-drive_download(dataset.id, path = dataset.path, overwrite = TRUE) ## Download raw data file
+filename <- "Sales.csv"
+file.id <- raw.folder %>% filter(name == filename) %>% use_series(id) 
+dataset.path <- file.path(cache.path, filename)
+drive_download(as_id(file.id), path = dataset.path, overwrite = TRUE)
 
 ## Read in
 
 library(readr)
 
-# system.time({sales.raw <- read_csv(dataset.path, locale = locale(encoding = "ASCII"))})
+ #system.time({sales.raw <- read_csv(dataset.path, locale = locale(encoding = "ASCII"))})
    # user  system elapsed 
    # 0.61    0.08    1.22 
 system.time(
@@ -70,18 +86,18 @@ system.time(
 # Retail Analysis.xlsx ####
 
 ## Download input data file
-lookup.file <- raw.path %>% 
-	file.path("Retail Analysis.xlsx") %>% ## Select file for download
-	drive_get()
-lookup.id <- as_id(lookup.file) ## Get ID for download
-lookup.path <- file.path(cache.path, lookup.file$name) # Assumes nrow = 1
-drive_download(lookup.id, path = lookup.path, overwrite = TRUE) ## Download raw data file
+lookup.file <- "Retail Analysis.xlsx" ## Select file for download
+lookup.id <- raw.folder %>% filter(name == lookup.file) %>% use_series(id) 
+lookup.path <- file.path(cache.path, lookup.file)
+drive_download(as_id(lookup.id), path = lookup.path, overwrite = TRUE) ## Download raw data file
 
 ## Read in
 
-library(readxl)
 
 ## Raw ingest
+
+toDec <- function(x) sprintf(x, fmt = "%d")
+
 sheets.ls <- excel_sheets(lookup.path)
 lookup.ls <- lapply(
 	sheets.ls,
@@ -90,9 +106,10 @@ lookup.ls <- lapply(
 	}
 )
 names(lookup.ls) <- sheets.ls
-
+lookup.ls$Item %<>% mutate_at(vars(Buyer, Category), funs(as.character))
+lookup.ls$Item %<>% mutate_at(vars(ItemID, Segment), funs(toDec))
 # Save ####
 
-parsed.path <- file.path(cache.path, "data00_raw ingest.RData")
+parsed.path <- file.path(cache.path, "data00u_raw ingest.RData")
 save(sales.raw, lookup.ls, file = parsed.path)
-drive_upload(parsed.path, paste0(stage.path, "/"))
+drive_upload(parsed.path, as_id(data.folder.id))

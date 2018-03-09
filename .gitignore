@@ -8,3 +8,5 @@
 ## Ignore data files
 **/Data/
 .httr-oauth
+.DS_Store
+.DS_Store?
